@@ -81,15 +81,14 @@ fn partition<T: Ord>(arr: &mut [T], left: isize, right: isize, ascending: bool) 
     i + 1
 }
 
-pub fn selection_sort<T: Ord>(list: &mut [T]) {
+pub fn selection_sort<T: Ord>(list: &mut [T], ascending: bool) {
     for i in 0..list.len() {
         let mut small = i;
         for j in (i + 1)..list.len() {
-            if list[j] < list[small] {
+            if (ascending && list[j] < list[small]) || (!ascending && list[j] > list[small]) {
                 small = j;
             }
         }
         list.swap(small, i);
     }
 }
-
